@@ -1,0 +1,20 @@
+{
+  "name": "dynamic-global-wallet-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "dynamic-nextjs": "pnpm -F dynamic-nextjs dev",
+    "dynamic-vite": "pnpm -F dynamic-vite dev",
+    "privy-vite": "pnpm -F privy-vite dev",
+    "rainbowkit-vite": "pnpm -F rainbowkit-vite dev",
+    "connectkit-vite": "pnpm -F connectkit-vite dev",
+    "build-dynamic-global-wallet": "pnpm -F dynamic-global-wallet build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
