@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 
 const config = getDefaultConfig({
   appName: "My RainbowKit App",
-  projectId: "9e559740664b49ec6bdaec33fdb7232c",
+  projectId: "",
   transports: {
     [seiTestnet.id]: http(),
   },

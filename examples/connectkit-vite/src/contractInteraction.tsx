@@ -51,7 +51,6 @@ const ContractInteraction = () => {
     const [stakeStatus, setStakeStatus] = useState({ loading: false, error: null, success: false });
     const [stakeAmount, setStakeAmount] = useState("0.1");
 
-
     const {
         data: balance,
         refetch: refetchBalance,
