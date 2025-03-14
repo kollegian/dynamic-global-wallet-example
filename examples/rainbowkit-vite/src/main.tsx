@@ -8,20 +8,23 @@ import {
   getDefaultConfig,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import { WagmiProvider } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, base } from "wagmi/chains";
+import {http, WagmiProvider} from "wagmi";
+import { seiTestnet } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import ContractInteraction from "./contractInteraction";
 
-import "dynamic-global-wallet/eip6963";
-import "dynamic-global-wallet/solana-standard";
+import '@sei-js/sei-account/eip6963';
 
 const queryClient = new QueryClient();
 
 const config = getDefaultConfig({
   appName: "My RainbowKit App",
-  projectId: "YOUR_PROJECT_ID",
-  chains: [mainnet, polygon, optimism, arbitrum, base],
-  ssr: true, // If your dApp uses server side rendering (SSR)
+  projectId: "9e559740664b49ec6bdaec33fdb7232c",
+  transports: {
+    [seiTestnet.id]: http(),
+  },
+  chains: [seiTestnet],
+  ssr: true,
 });
 
 createRoot(document.getElementById("root")!).render(
@@ -30,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <ConnectButton />
+          <ContractInteraction />
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

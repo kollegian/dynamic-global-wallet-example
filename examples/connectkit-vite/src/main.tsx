@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { WagmiProvider, createConfig, http } from "wagmi";
-import { mainnet } from "wagmi/chains";
+import {seiTestnet} from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   ConnectKitButton,
@@ -10,30 +10,20 @@ import {
   getDefaultConfig,
 } from "connectkit";
 
-import "dynamic-global-wallet/eip6963";
-import "dynamic-global-wallet/solana-standard";
+
+import '@sei-js/sei-account/eip6963';
+
+import ContractInteraction from "./contractInteraction";
+
 
 const config = createConfig(
   getDefaultConfig({
-    // Your dApps chains
-    chains: [mainnet],
+    chains: [seiTestnet],
     transports: {
-      // RPC URL for each chain
-      [mainnet.id]: http(
-        `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`
-      ),
+      [seiTestnet.id]: http(),
     },
-
-    // Required API Keys
     walletConnectProjectId: "9e559740664b49ec6bdaec33fdb7232c",
-
-    // Required App Info
-    appName: "Your App Name",
-
-    // Optional App Info
-    appDescription: "Your App Description",
-    appUrl: "https://family.co", // your app's url
-    appIcon: "https://family.co/logo.png", // your app's icon, no bigger than 1024x1024px (max. 1MB)
+    appName: "Example App",
   })
 );
 
@@ -53,6 +43,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Web3Provider>
       <ConnectKitButton />
+      <ContractInteraction />
     </Web3Provider>
   </StrictMode>
 );
